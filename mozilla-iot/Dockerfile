@@ -44,7 +44,7 @@ RUN cd /home/node && \
 
 USER root
 RUN git clone https://github.com/mozilla-iot/gateway-docker.git /tmp/gateway-docker && \
-	mv /tmp/gateway-docker/service /etc/service && \
+	mv /tmp/gateway-docker/service/* /etc/service/ && \
 	rm -rf /tmp/gateway-docker
 
 ENV TZ America/Toronto
