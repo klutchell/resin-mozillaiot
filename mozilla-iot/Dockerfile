@@ -13,9 +13,9 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
 		libnanomsg4 \
 		libopenzwave1.5 \
 		libopenzwave1.5-dev \
-		python \
-		python-pip \
-		python-setuptools \
+		python2.7-dev \
+		python2.7-pip \
+		python2.7-setuptools \
 		python3 \
 		python3-pip \
 		python3-setuptools \
