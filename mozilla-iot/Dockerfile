@@ -48,7 +48,8 @@ RUN git clone https://github.com/mozilla-iot/gateway-docker.git /tmp/gateway-doc
 	rm -rf /tmp/gateway-docker
 
 ENV TZ America/Toronto
-RUN echo $TZ > /etc/timezone && DEBIAN_FRONTEND=noninteractive dpkg-reconfigure tzdata
+# RUN echo $TZ > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]
 
