@@ -1,9 +1,9 @@
-FROM resin/%%RESIN_MACHINE_NAME%%-node:latest
+FROM arm32v7/node:stretch
 
 RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \
 	apt update && \
-	apt dist-upgrade -y && \
-	apt install -y \
+# 	apt dist-upgrade -y && \
+	apt install -y --no-install-recommends \
 		build-essential \
 		certbot \
 		cron \
