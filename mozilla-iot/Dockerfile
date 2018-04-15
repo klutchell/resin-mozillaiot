@@ -47,5 +47,8 @@ RUN git clone https://github.com/mozilla-iot/gateway-docker.git /tmp/gateway-doc
 	mv /tmp/gateway-docker/service /etc/service && \
 	rm -rf /tmp/gateway-docker
 
+ENV TZ America/Toronto
+RUN echo $TZ > /etc/timezone && dpkg-reconfigure tzdata
+
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]
 
