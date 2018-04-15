@@ -30,8 +30,7 @@ RUN npm config set unsafe-perm true
 RUN git clone https://github.com/c9/core.git .
 
 # install cloud9 sdk
-RUN scripts/install-sdk.sh \
-	&& npm cache clean && rm -rf /tmp/*
+RUN scripts/install-sdk.sh
 
 # set timezone
 RUN echo $TZ > /etc/timezone && dpkg-reconfigure tzdata

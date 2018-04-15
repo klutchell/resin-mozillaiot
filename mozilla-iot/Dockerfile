@@ -1,9 +1,8 @@
 FROM arm32v7/node:stretch
 
 RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/sources.list && \
-	apt update && \
-# 	apt dist-upgrade -y && \
-	apt install -y --no-install-recommends \
+	apt-get update && \
+	apt-get install -y --no-install-recommends \
 		build-essential \
 		certbot \
 		cron \
@@ -13,15 +12,18 @@ RUN echo "deb http://ftp.debian.org/debian stretch-backports main" >> /etc/apt/s
 		libnanomsg4 \
 		libopenzwave1.5 \
 		libopenzwave1.5-dev \
+		python \
+		python-pip \
+		python-setuptools \
 		python2.7-dev \
-		python2.7-pip \
-		python2.7-setuptools \
 		python3 \
 		python3-pip \
 		python3-setuptools \
+		python3-dev \
 		runit \
-		sudo && \
-	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+		sudo \
+	&& apt-get clean \
+	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
 	echo "0 */12 * * * root /home/node/mozilla-iot/gateway/tools/renew-certificates.sh" > /etc/cron.d/renew-certs && \
 	pip2 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
 	pip3 install git+https://github.com/mozilla-iot/gateway-addon-python#egg=gateway_addon && \
@@ -41,7 +43,6 @@ RUN cd /home/node && \
 	yarn
 
 USER root
-
 RUN git clone https://github.com/mozilla-iot/gateway-docker.git /tmp/gateway-docker && \
 	mv /tmp/gateway-docker/service /etc/service && \
 	rm -rf /tmp/gateway-docker
