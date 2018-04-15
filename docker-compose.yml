@@ -1,0 +1,40 @@
+version: '2.1'
+
+volumes:
+
+  mozilla-iot-data:
+  ssh-data:
+
+services:
+
+  mozilla-iot:
+    build: ./mozilla-iot
+    ports:
+      - '192.168.86.12:80:8080'
+      - '192.168.86.12:443:4443'
+    volumes:
+      - 'mozilla-iot-data:/home/node/.mozilla-iot'
+
+  cloud9:
+    build: ./cloud9
+    ports:
+      - '8080:8080'
+    volumes:
+      - 'mozilla-iot-data:/data'
+      - 'ssh-data:/root/.ssh'
+
+  ssh:
+    build: ./ssh
+    ports:
+      - '22:22'
+    volumes:
+      - 'mozilla-iot-data:/data'
+      - 'ssh-data:/root/.ssh'
+
+  # rsnapshot:
+  #   build: ./rsnapshot
+  #   volumes: 
+  #     - 'mozilla-iot-data:/data'
+  #     - 'ssh-data:/root/.ssh'
+  #   privileged: true
+
