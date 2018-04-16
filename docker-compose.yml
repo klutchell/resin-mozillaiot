@@ -20,7 +20,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - 'mozilla-iot-data:/data'
+      # - 'mozilla-iot-data:/data'
       - 'ssh-data:/root/.ssh'
 
   ssh:
@@ -28,7 +28,7 @@ services:
     ports:
       - '22:22'
     volumes:
-      - 'mozilla-iot-data:/data'
+      # - 'mozilla-iot-data:/data'
       - 'ssh-data:/root/.ssh'
 
   # rsnapshot:
