@@ -26,9 +26,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN git clone https://github.com/mozilla-iot/gateway /usr/src/gateway \
 	&& chown -R node:node /usr/src/gateway
 
-VOLUME /home/node/.mozilla-iot
-
-RUN chown -R node:node /home/node/.mozilla-iot
+RUN mkdir -p /home/node/.mozilla-iot \
+	&& chown -R node:node /home/node/.mozilla-iot
 
 USER node
 
