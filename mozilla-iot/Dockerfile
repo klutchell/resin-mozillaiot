@@ -51,5 +51,7 @@ ENV TZ America/Toronto
 # RUN echo $TZ > /etc/timezone && dpkg-reconfigure -f noninteractive tzdata
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
+RUN ln -sf /home/node /home/pi
+
 ENTRYPOINT ["/usr/bin/runsvdir", "/etc/service"]
 
