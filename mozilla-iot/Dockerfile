@@ -23,13 +23,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
+RUN git clone https://github.com/mozilla-iot/gateway /usr/src/app \
+	&& chown -R node:node /usr/src/app
+
 USER node
 
 WORKDIR /usr/src/app
 
-RUN chown -R node:node .. \
-	&& git clone https://github.com/mozilla-iot/gateway . \
-	&& npm install
+RUN npm install
 
 ENTRYPOINT ["npm", "start"]
 
