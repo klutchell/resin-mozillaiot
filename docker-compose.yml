@@ -2,7 +2,7 @@ version: '2.1'
 
 volumes:
 
-  mozilla-iot-data:
+  # mozilla-iot-data:
   ssh-data:
 
 services:
@@ -12,8 +12,8 @@ services:
     ports:
       - '80:8080'
       - '4443:4443'
-    volumes:
-      - 'mozilla-iot-data:/home/node/.mozilla-iot'
+    # volumes:
+      # - 'mozilla-iot-data:/home/node/.mozilla-iot'
 
   cloud9:
     build: ./cloud9
