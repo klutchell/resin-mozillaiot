@@ -14,8 +14,6 @@ services:
       - '4443:4443'
     volumes:
       - 'mozilla-iot-data:/home/node/.mozilla-iot'
-    volumes_from:
-      - ssh:ro
 
   cloud9:
     build: ./cloud9
