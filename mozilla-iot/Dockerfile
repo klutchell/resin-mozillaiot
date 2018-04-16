@@ -27,8 +27,9 @@ USER node
 
 WORKDIR /usr/src/app
 
-RUN git clone https://github.com/mozilla-iot/gateway . \
-    && npm install
+RUN chown -R node:node .. \
+	&& git clone https://github.com/mozilla-iot/gateway . \
+	&& npm install
 
 ENTRYPOINT ["npm", "start"]
 
