@@ -23,12 +23,16 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 	&& apt-get clean \
 	&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-RUN git clone https://github.com/mozilla-iot/gateway /usr/src/app \
-	&& chown -R node:node /usr/src/app
+RUN git clone https://github.com/mozilla-iot/gateway /usr/src/gateway \
+	&& chown -R node:node /usr/src/gateway
+
+VOLUME /home/node/.mozilla-iot
+
+RUN chown -R node:node /home/node/.mozilla-iot
 
 USER node
 
-WORKDIR /usr/src/app
+WORKDIR /usr/src/gateway
 
 RUN npm install
 

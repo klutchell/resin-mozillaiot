@@ -22,7 +22,7 @@ services:
     ports:
       - '8080:8080'
     volumes:
-      - 'mozilla-iot-data:/data:ro'
+      - 'mozilla-iot-data:/data'
     volumes_from:
       - ssh
 
